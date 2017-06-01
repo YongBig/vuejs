@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="tmp in sortStudent">{{tmp}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="(tmp2,index) in sortPo">{{index}}----{{tmp2.name}}---{{tmp2.age}}</li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                student:[
+                       56,51,53,54,57,88,99,44,55,10
+                ],
+                po:[
+                    {name:"asd",age:15},
+                    {name:"faas",age:425},
+                    {name:"fasd",age:515},
+                    {name:"agd",age:215},
+                    {name:"aghd",age:115}
+                ]
+        },
+            computed:{//计算方式 展现dom之前先进行此运算
+                sortStudent:function(){
+                    //this是指vue构造器
+                    return this.student.sort(sortNum)
+                },
+                sortPo:function(){
+                    return sortByKey(this.po,"age");//数组排序
+                }
+            }
+        });
+        function sortNum(a,b){
+            return b-a
+        }
+        function sortByKey(arry,key){
+            return arry.sort(function(a,b){
+                var x=a[key];
+                var y=b[key];
+                return (x<y)?-1 :((x>y)?1:0);
+            })
+        }
+    </script>
+</body>
+</html>

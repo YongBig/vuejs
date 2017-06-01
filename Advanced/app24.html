@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>杂项</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h1>杂项</h1>
+    <div id="app1">
+        <hello ></hello>
+        <world1></world1>
+    </div>
+    <script>
+        Vue.component('hello',{
+            name:'孙算你',
+            template:'<div>${this.$parent.message}全局化的-&gt;&lt;hello&gt;</div>',
+            delimiters: ['${','}'],
+        });
+        worldworld={
+            template:`<div>局部的-&gt;&lt;world1&gt;{{this.$parent.message}}</div>`
+        };
+        var app1 = new Vue({
+            el:"#app1",
+            data:{
+                message:"你好 Vue!"
+            },
+            components:{
+                world1:worldworld
+            }
+
+        })
+    </script>
+</body>
+</html>

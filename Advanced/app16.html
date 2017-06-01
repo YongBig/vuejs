@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件-3</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h1>组件-3</h1>
+
+    <div id="app1">
+        <world1></world1>
+    </div>
+    <script>
+        city={
+            template:`<div>this is city</div>`
+
+        }
+        worldworld={
+            template:`<div><p>局部的-&gt;&lt;world1&gt;</p><city></city></div>`,
+            components:{
+                "city":city
+            }
+        }
+        var app1 = new Vue({
+            el:"#app1",
+            data:{
+                message:"你好 Vue!"
+            },
+            components:{
+                world1:worldworld
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件-3</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h1>组件-3</h1>
+
+    <div id="app">
+        <component :is="who"></component>
+    </div>
+    <script>
+        pA={
+            template:`<div>这是PA{{a}}</div>`,
+            data:function () {
+                return{
+                    a:"你大爷"
+                }
+            }
+        }
+        pB={
+            template:`<div>这是PB</div>`
+        }
+        pC={
+            template:`<div>这是PC</div>`
+        }
+        pD={
+            template:`<div>这是PD</div>`
+        }
+        var app1 = new Vue({
+            el:"#app",
+            data:{
+                who:"pa"
+            },
+            components:{
+                pa:pA,
+                pb:pB,
+                pc:pC,
+                pd:pD,
+            }
+        })
+    </script>
+</body>
+</html>

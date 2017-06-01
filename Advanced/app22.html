@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mixins</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h1>Mixins</h1>
+    <div id="app">
+        <p>{{message}}</p>
+        <button @click="add">墙抱了</button>
+    </div>
+    <script>
+        Vue.mixin({
+            created:function () {
+                console.log('我是全局混入');
+            },
+        })
+        var aaa={
+            data:{
+                message:"混入data"
+            },
+            created:function () {
+                console.log('我是混入');
+            },
+            methods:{
+                add:function(){
+                    console.log("我被混入墙抱了");
+                }
+            },
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"构造器data"
+            },
+            methods:{
+                add:function(){
+                    console.log("我被墙抱了")
+                }
+            },
+            created:function () {
+                console.log('我是构造器')
+            },
+            mixins:[aaa],
+
+
+        })
+    </script>
+</body>
+</html>

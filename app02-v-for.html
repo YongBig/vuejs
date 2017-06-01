@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <th v-for="tname in theader">{{tname}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for = "message in todos">
+                    <td v-for = "se in message ">{{se}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                theader:[
+                    "姓名","年龄","性别"
+                ],
+                todos:[
+                    {"name":"大王叫我来巡山","age":32,"sex":"男"},
+                    {"name":"打起我的鼓","age":20,"sex":"女"},
+                    {"name":"翘起我的罗","age":19,"sex":"男"}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

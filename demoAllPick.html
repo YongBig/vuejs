@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<template>
+    <div>
+        <input type='checkbox' class='input-checkbox' v-model='checked' v-on:click='checkedAll'>全选
+        <template v-for='checkb in checkboxData'>
+            <input type='checkbox' name='checkboxinput' class='input-checkbox' v-model='checkboxModel' value='{{checkb.id}}'>{{checkb.value}}
+        </template>
+    </div>
+</template>
+<script>
+    var app=new Vue({
+
+    })
+</script>
+</body>
+</html>

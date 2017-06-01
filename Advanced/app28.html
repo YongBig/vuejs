@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h1>slot</h1>
+    <div id="app">
+        <world1 v-for="aaa in goods">
+            <span slot="name">{{aaa.name}}</span>
+            <span slot="num">{{aaa.num}}</span>
+        </world1>
+    </div>
+    <template id="demo">
+        <p>
+            <child v-show="childp"></child>
+            名称：<slot name="name"></slot>
+            数量：<slot name="num"></slot>
+        </p>
+    </template>
+    <script>
+        Vue.component('child',{
+            template:`<div>child的-&gt;&lt;哈哈&gt;</div>`,
+            data:function(){
+                return {
+                    childp:true
+                }
+            }
+        })
+        worldworld={
+            template:"#demo",
+            data:function(){
+                return {
+                    childp:true
+                }
+            }
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                goods:[
+                    {name:'car',num:1},
+                    {name:'boy',num:2},
+                    {name:'box',num:5}
+
+                ]
+            },
+            components:{
+                world1:worldworld
+            }
+
+        })
+    </script>
+</body>
+</html>

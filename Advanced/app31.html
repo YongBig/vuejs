@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h1>动画</h1>
+    <div id="app">
+        <!--name是CSS里-->
+        <transition name="fade">
+            <p v-if="show">{{message}}</p>
+        </transition>
+        <button @click="hidden">hidden</button>
+    </div>
+    <style>
+        .fade-enter-active, .fade-leave-active{
+            transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-active{
+           opacity: 0
+        }
+    </style>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"你好 Vue!",
+                show:true
+            },
+            methods:{
+                hidden:function () {
+                    this.show=false
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h1>v-model</h1>
+    <hr>
+    <div id="app">
+        <P>开始文本：{{message}}</P>
+        <h3>文本框</h3>
+        <p>v-model: <input type="text" v-model="message"></p>
+        <p>v-model.lazy: <input type="text" v-model.lazy="message"></p>
+        <p>v-model.number: <input type="text" v-model.number="message"></p>
+        <p>v-model.trim: <input type="text" v-model.trim="message"></p>
+        <hr>
+        <h3>文本区域</h3>
+        <!--文本类型如用双花括号绑定是单项绑定，修改文本区域值是不会改变数据模型-->
+        <div>
+            <h5>{{}}绑定的</h5>
+        <textarea name=""  cols="30" rows="10">{{message}}</textarea>
+        </div>
+        <div>
+            <h5>v-model 绑定的</h5>
+        <!--v-model 绑定文本区域才能双向数据绑定-->
+        <textarea name="" cols="30" rows="10" v-model="message"></textarea>
+        </div>
+        <hr>
+        <h3>对选按钮</h3>
+        <p>
+            <input type="checkbox" id="ckbox" v-model="d">
+            <label for="ckbox">{{d}}</label>
+        </p>
+        <h3>多个选按钮绑定一个数组</h3>
+        <p>
+            <input type="checkbox" id="ck1" value="rose" v-model="arr">
+            <label for="ck1">rose</label>
+            <br>
+            <input type="checkbox" id="ck2" value="jack" v-model="arr">
+            <label for="ck2">jack</label>
+            <br>
+            <input type="checkbox" id="ck3"value="love"  v-model="arr">
+            <label for="ck3">love</label>
+            <br>
+            <p>{{arr}}</p>
+        </p>
+        <h3>单选按钮</h3>
+        <input type="radio" id="one" value="大" v-model="danxuan">
+        <label for="one">大</label>
+        <br>
+        <input type="radio" id="two" value="小" v-model="danxuan">
+        <label for="two">小</label>
+        <p>{{danxuan}}</p>
+        <hr>
+        <h3>选择列表</h3>
+        <p>
+            <h5>单选列表</h5>
+            <select name=""  v-model="select">
+                <option value="小">A</option>
+                <option value="中">B</option>
+                <option value="大">C</option>
+            </select>
+            <p>{{select}}</p>
+        </p>
+        <p>
+        <h5>多选列表</h5>
+        <select name="" v-model="selectarr" multiple>
+            <option value="小">A</option>
+            <option value="中">B</option>
+            <option value="大">C</option>
+        </select>
+        <p>{{selectarr}}</p>
+        </p>
+        <hr>
+        <p>
+        <h3>v-for与v-model</h3>
+        <select name=""  v-model="vfor">
+            <option  v-for="tmp in optionList":value="tmp.age" >人物：{{tmp.name}}</option>
+        </select>
+        <p>年龄：{{vfor}}</p>
+        </p>
+        <hr>
+        <h3>全选</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td><input type="checkbox" v-model="isgood" v-on:click="change"></td>
+                    <td v-for="tmp in Thead":value="tmp.enName">{{tmp.name}}</td>
+                </tr>
+            </thead>
+            <tbody>
+            <tr v-for="tmp in tableDate">
+                <td><input type="checkbox" v-model="isAll" v-bind:value="tmp.name" v-on:click="isAllPick" ></td>
+                <td>{{tmp.name}}</td>
+                <td>{{tmp.age}}</td>
+                <td>{{tmp.sex}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>{{isAll}}</p>
+    </div>
+
+    <script>
+        var vm =new Vue(
+                {
+                    el:'#app',
+                    data :{
+                        message:'你好小妹妹',
+                        d:true,
+                        arr:[],
+                        danxuan:[],
+                        select:'小',
+                        selectarr:[],
+                        optionList:[
+                            {name:"帅",age:15},
+                            {name:"到",age:16},
+                            {name:"掉",age:17},
+                            {name:"渣",age:18}
+                        ],
+                        vfor:'18',
+                        Thead: [
+                            {name:'姓名',enName:'name'},
+                            {name:'年龄',enName:'age'},
+                            {name:'性别',enName:'sex'}
+                        ],
+                        isgood:'',
+                        isAll:[],
+                        tableDate:[
+                            {name:'小甜',age:18,sex:'madam'},
+                            {name:'小杨',age:20,sex:'man'},
+                            {name:'老孙',age:31,sex:'madam'},
+                            {name:'小田',age:12,sex:'man'}
+                        ]
+                    },
+                    methods:{
+                        change:function(){
+                            if(this.isgood == true){
+                                this.isAll=[];
+                                for(var i=0;i<this.tableDate.length;i++){
+                                    this.isAll.push(this.tableDate[i].name)
+                                }
+                            }else{
+                                this.isAll=[];
+                            }
+                        },
+                        isAllPick:function(){
+                            if(this.isAll.length == this.tableDate.length){
+                                this.isgood=true;
+                            }else if(this.isAll.length < this.tableDate.length){
+                                this.isgood=false;
+                            }
+                        }
+                    }
+                }
+        );
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</body>
+</html>

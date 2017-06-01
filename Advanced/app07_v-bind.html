@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .a{
+            color:red
+        }
+        .b{
+            font-size: 200%;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <p>
+        <img  v-bind:src="Imgsrc" width="200":width="width">
+    </p>
+    <hr>
+    <div :class="classA">1、绑定class</div>
+    <div :class="{a:colorOr}">2、绑定class中的判断</div>
+    <div :class="[classA,classB]">3、绑定class中绑定数组</div>
+    <div :class="[colorOr?classA:classB]">4、三元表达式</div>
+    <div :class="[{a:colorOr},classB]">5、绑定class中使用判断组合</div>
+    <hr>
+    <div :style="{color:red,fontSize:font}">6、style绑定</div>
+    <div :style="fontArry">7、style绑定数组</div>
+</div>
+<script>
+    var app= new Vue({
+        el:'#app',
+        data:{
+            Imgsrc:'img/微信图片_20170418112834.jpg',
+            width:'50',
+            classA:'a',
+            colorOr:true,
+            classB:'b',
+            red:"red",
+            font:"90px",
+            fontArry:{
+                color:'blue',
+                fontSize:'200%'
+            }
+        }
+    });
+</script>
+</body>
+</html>

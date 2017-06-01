@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>propsData</title>
+    <script src="../js/vue.js"></script></body>
+
+</head>
+<body>
+    <h1>选项</h1>
+    <header></header>
+    <script>
+        var header_aa=Vue.extend({
+            template:`<p>{{message}}---{{a}}</p>`,
+            data:function(){
+                return{
+                    message:'臭··流氓'
+                }
+            },
+            props:["a"]
+        });
+        new header_aa({
+            propsData:{
+                a:1
+            }
+        }).$mount('header')
+    </script>
+</html>

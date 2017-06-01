@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watch</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<h1>hello vue</h1>
+<div id="app">
+    <p>苹果</p>
+    <p>购买数量：{{n}}</p>
+    <p>价格：{{price}}元/斤</p>
+    <goods :prop-a="n" :prop-b="price"></goods>
+    <button @click="jia">+++++</button>
+    <button @click="jian">---</button>
+</div>
+<script>
+    var aa={
+        template:`<p>共{{total}}元(每增加100减5元，当前优惠{{sale}})</p>`,
+        props:["propA","propB"],
+        computed:{
+            "total":function(){
+                console.log(this.propA)
+                if(this.propA*this.propB>=100){
+                    return   (this.propA*this.propB - parseInt(this.propA*this.propB/100)*5)
+                }else{
+                    return    this.propA*this.propB
+                }
+            },
+            "sale":function(){
+                if(this.propA*this.propB>=100){
+                    return    parseInt(this.propA*this.propB/100)*5
+                }else{
+                    return 0
+                }
+            }
+        }
+    }
+    var app = new Vue({
+        el: "#app",
+        data: {
+            n: 1,
+            price:8.5,
+        },
+        components: {
+            "goods": aa
+        },
+        methods: {
+            jia: function () {
+                this.n++
+            },
+            jian: function () {
+                this.n--
+            }
+        },
+//        watch: {
+//            n: function (newVal, oldVal) {
+//                if (this.n < 1) {
+//                    this.n = 1
+//                }
+//
+//            }
+//        }
+    })
+    app.$watch('n',function (nVal,oVal) {
+        if(nVal<1){
+            app.n=1
+        }
+    },{deep:true,immediate:true})
+//    app.$watch('total',function (nVal,oVal) {
+//        console.log(nVal)
+//        if(nVal>=100){
+//            console.log(nVal - parseInt(nVal/100)*5)
+//        }
+//    },{deep:true,immediate:true})
+</script>
+</body>
+</html>

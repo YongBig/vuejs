@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.extend</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h1>vue.extend</h1>
+    <div id="header"></div>
+    <div id="footer"></div>
+
+    <script>
+        var app = Vue.extend({
+            template:'<p>{{message}}</p>',
+            data:function(){
+                return {
+                    message:'我是构造器'
+                }
+            }
+        })
+        var app2 = Vue.extend({
+            template:'<p>{{message}}</p>',
+            data:function(){
+                return {
+                    message:'我是构造器2'
+                }
+            }
+        })
+        new app().$mount('#header');
+        new app().$mount('#footer');
+
+    </script>
+</body>
+</html>

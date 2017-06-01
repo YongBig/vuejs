@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h1>事件</h1>
+    <div id="app">
+        <p>{{message}}</p>
+        <input type="button" value="+++" onclick="app.add()">
+    </div>
+    <button  onclick="aa()">-------</button>
+    <button  onclick="off()">消除</button>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:1
+            },
+            methods:{
+                add:function () {
+                    this.message++
+                }
+            }
+        })
+        app.$on('jian',function (num) {
+            console.log('执行了减')
+            this.message -= num
+        })
+//        app.$once('jian',function (num) {
+//            console.log('执行了减')
+//            this.message -= num
+//        })
+        function aa(){
+            app.$emit('jian','2')
+        }
+        function off() {
+            console.log(app)
+            app.$off('jian')
+        }
+    </script>
+</body>
+</html>

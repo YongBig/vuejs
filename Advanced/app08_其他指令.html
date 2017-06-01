@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>其他指令</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <h1>其他指令</h1>
+    <div id="app">
+        <p v-pre>{{message}}</p>
+        <p v-cloak>在浏览器为用户渲染完之前，你是看不到我的!</p>
+        <hr>
+        <p v-once>初始化的设置的值：{{message}}</p>
+        <textarea  cols="30" row="10" v-model="message"></textarea>
+    </div>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"你好 Vue!"
+            }
+        })
+    </script>
+</body>
+</html>

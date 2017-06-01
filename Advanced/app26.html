@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>方法</title>
+    <script src="../js/jquery-1.3.2.min.js"></script>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<h1>vue.extend</h1>
+<div id="header"></div>
+<div id="footer"></div>
+<p><button onclick="xiezai()">卸载</button></p>
+<p><button onclick="shuaxin()">刷新</button></p>
+<p><button onclick="xiugai()">修改</button></p>
+<script>
+    var app = Vue.extend({
+        template: '<p>{{message}}</p>',
+        data: function () {
+            return {
+                message: '我是构造器'
+            }
+        },
+        destroyed:function(){
+            console.log('10、destroyed 销毁之后')
+        },
+        updated:function(){
+            alert('6、updated 被更新后')
+        },
+    })
+    var app2 = Vue.extend({
+        template: '<p>{{message}}</p>',
+        data: function () {
+            return {
+                message: '我是构造器2'
+            }
+        },
+        updated:function(){
+           alert('6、updated 被更新后')
+        },
+    })
+  var vm=  new app().$mount('#header');//挂载
+    var vm2=  new app2().$mount('#footer');
+    function xiezai(){
+        vm.$destroy()//卸载
+    }
+    function shuaxin(){
+        vm2.$forceUpdate()//刷新
+    }
+    function xiugai(){
+        vm.message='讨厌'
+        vm.$nextTick(function(){
+
+            alert('更新完后我被调用')
+        })//刷新
+    }
+</script>
+</body>
+</html>

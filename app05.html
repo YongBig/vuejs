@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <todo-item v-for="tmp in list" v-bind:todo = "tmp"></todo-item>
+    </div>
+    <script>
+        //第一步声明组件
+        Vue.component('todo-item',{
+            props:['todo'],
+            template:'<div>{{todo.text}}</div>'
+        });
+        var app = new Vue({
+            el:"#app",
+            data:{
+                list:[
+                    {text:'张国荣'},
+                    {text:"梅艳芳"},
+                    {text:"邓丽君"}
+                ]
+            }
+        });
+
+    </script>
+</body>
+</html>

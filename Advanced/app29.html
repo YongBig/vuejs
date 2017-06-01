@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
+</head>
+<body>
+    <h1>hello ajax</h1>
+    <div id="app">
+        <p>{{message}}</p>
+        <input type="text" v-model="message">
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"你好 Vue!"
+            },
+            beforeMount:function(){
+                console.log('3、beforeMount 挂载之前')
+                    //post
+                var formData = new FormData();
+                formData.append('a','1');
+                this.$http.post('data/test.json',formData).then((response) => {
+
+                    // get body data
+                    console.log(response)
+                }, response => {
+                    // error callback
+                });
+                    // GET /someUrl
+                    this.$http.get('data/test.json').then((response) => {
+
+                        // get body data
+                        console.log(response)
+                }, response => {
+                    // error callback
+                });
+
+            },
+        })
+    </script>
+</body>
+</html>

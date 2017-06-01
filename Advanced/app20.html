@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <h1>computed</h1>
+    <div id="app">
+        <p>{{firstPirce}}</p>
+        <p>{{zhekuo}}</p>
+        <p>{{xianjia}}</p>
+        <p><button v-on:click="add(2,$event)">++++</button></p>
+        <btn @click.native="add()">+++++++</btn>
+    </div>
+    <a v-on:click.stop=’doThis’>阻止单击事件冒泡</a>
+    <from v-on:submit.prevent=’onSubmit’>提交表单不在重新载入页面</from>
+    <div v-on:click.capture="doThis">添加事件是使用捕获模式</div>
+    <div v-on:click.self="doThat">只当事件在该元素本身（而不在是子元素）触发的回调</div>
+    <a v-on:click.stop.prevent="doThat">修饰符可以串联</a>
+    <button  onclick='app.add()'> 我是外部按钮 作用域不在app中</button>
+    <script>
+        var btn={
+            template:`<button>外部组件</button>`
+
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                firstPirce:10,
+                zhekuo:0.7
+            },
+            computed:{
+                xianjia:function(){
+                    return  "￥"+this.firstPirce*this.zhekuo
+                }
+            },
+            methods:{
+                add:function(num,event){
+                    if(num!==undefined){
+                    this.firstPirce+=num
+                    }else{
+                        this.firstPirce++
+                    }
+                }
+            },
+            components:{
+                "btn":btn
+            }
+        })
+    </script>
+</body>
+</html>
